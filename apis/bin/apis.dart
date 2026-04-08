@@ -25,16 +25,19 @@ Future<void> main() async {
     print("==== LISTA DOS LIVROS ====");
 
     for (var livro in listaDeLivros) {
-      List<Vilao> viloesLista = [];
+      List<String> viloesLista = [];
       String titulo = livro['Title'];
       int ano = livro['Year'];
       int paginas = livro['Pages'];
       for (var viloesLivro in livro['villains']) {
         Vilao vilao = Vilao(viloesLivro['name']);
-        viloesLista.add(vilao);
+        String nomeVilao = vilao.nome;
+        viloesLista.add(nomeVilao);
       }
-      Livro novoLivro = Livro(titulo, ano, paginas, viloesLista);
+      Livro novoLivro = Livro(titulo, ano, paginas);
       novoLivro.mostrarCaracteristicas();
+      print(viloesLista);
+      print("----------");
     }
   } catch (e) {
     print("Falha ao carregar os dados: $e");
